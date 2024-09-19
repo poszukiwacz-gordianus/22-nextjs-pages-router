@@ -7,12 +7,7 @@ export default async function handler(req, res) {
       message: "Please make a POST request",
     });
 
-  const contactData = {
-    fullName: "Gordi",
-    email: "test",
-    subject: "booking",
-    message: "Hey",
-  };
+  const contactData = JSON.parse(req.body);
 
   const { error } = await supabase.from("contact").insert([contactData]);
 
@@ -26,6 +21,6 @@ export default async function handler(req, res) {
   // Success message
   res.status(200).json({
     success: true,
-    message: "Thanks for your mesage we will be in touch soon :)",
+    message: "Thanks for your message! We will be in touch soon :)",
   });
 }
